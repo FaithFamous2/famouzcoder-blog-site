@@ -15,6 +15,10 @@ new mongoose.Schema({
         type: String,
         required:true,
     },
+    profilePicture:{
+        type: String,
+        default: "https://static.vecteezy.com/system/resources/previews/020/213/738/original/add-profile-picture-icon-upload-photo-of-social-media-user-vector.jpg",
+    },
 }, {timestamps: true});
 
 
