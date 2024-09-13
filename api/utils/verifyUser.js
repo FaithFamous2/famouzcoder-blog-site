@@ -40,7 +40,7 @@ export const verifyToken = (req, res, next) => {
 
         // Attach decoded user information to the request object
         req.user = decoded;  // Make sure 'decoded' contains the user object or userId
-        console.log('Decoded Token:', decoded);
+        // console.log('Decoded Token:', decoded);
 
         next();
     });
