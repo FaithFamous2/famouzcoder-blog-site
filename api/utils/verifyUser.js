@@ -38,9 +38,14 @@ export const verifyToken = (req, res, next) => {
             }
         }
 
+          // Ensure that the decoded object contains 'id' or '_id'
+          if (!decoded.id) {
+            return next(errorHandler(401, 'Unauthorized: Invalid token structure, user id missing'));
+        }
+
         // Attach decoded user information to the request object
         req.user = decoded;  // Make sure 'decoded' contains the user object or userId
-        // console.log('Decoded Token:', decoded);
+        console.log('Decoded Token:', decoded);
 
         next();
     });

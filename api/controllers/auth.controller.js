@@ -43,7 +43,7 @@ export const signin = async (req, res, next) => {
         if(!validPassword){
            return next(errorHandler(400, 'Wrong Credentials'));
         }
-        const token = jwt.sign({ userId: ValidUser._id, isAdmin:ValidUser.isAdmin },process.env.JWT_SECRET);
+        const token = jwt.sign({ id: ValidUser._id, isAdmin:ValidUser.isAdmin },process.env.JWT_SECRET);
         const {password: pass, ...rest} = ValidUser._doc;
         res.status(200).cookie('access_token',token,{
             httpOnly:true,
