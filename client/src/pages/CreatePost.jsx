@@ -7,6 +7,8 @@ import { app } from '../firebase';
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import { useNavigate } from 'react-router-dom';
+import 'highlight.js/styles/github.css'; // Import the highlight.js styles
+import hljs from 'highlight.js'; // Import highlight.js
 
 function CreatePost() {
     const [file, setFile] = useState(null);
@@ -15,6 +17,33 @@ function CreatePost() {
     const[ImageUploadError, setImageUploadError] = useState(null);
     const [formData, setFormData] = useState({});
     const navigate = useNavigate()
+
+    const modules = {
+        toolbar: [
+          [{ header: '1' }, { header: '2' }, { font: [] }],
+          [{ list: 'ordered' }, { list: 'bullet' }],
+          ['bold', 'italic', 'underline', 'blockquote'],
+          [{ align: [] }],
+          [{ 'code-block': true }], // Adding code block support
+          ['clean'], // Remove formatting button
+        ],
+        syntax: {
+          highlight: (text) => hljs.highlightAuto(text).value, // Enable syntax highlighting using highlight.js
+        },
+      };
+
+      const formats = [
+        'header',
+        'font',
+        'list',
+        'bullet',
+        'bold',
+        'italic',
+        'underline',
+        'blockquote',
+        'align',
+        'code-block', // Code block format
+      ];
     // console.log(formData)
     const handleUploadImage = async () => {
         try {
@@ -134,9 +163,10 @@ const handleSubmit = async(e) => {
                         <img src={formData.image} alt='upload' className='w-full h-72 object-cover border border-teal-400' />
                     )}
 
-            <ReactQuill theme='snow' placeholder='write something....' className='h-72 mb-12' required onChange={(value) => {
-                setFormData({...formData, content: value});
-            }}/>
+                <ReactQuill theme='snow' placeholder='write something....' className='h-72 mb-12' required onChange={(value) => {
+                    setFormData({...formData, content: value});
+                }} modules={modules} // Pass the custom modules with toolbar
+                formats={formats} />
             <Button type='submit' gradientDuoTone='pinkToOrange'>Publish</Button>
             {
                 publishError && (

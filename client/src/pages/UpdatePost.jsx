@@ -8,6 +8,8 @@ import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import { useNavigate, useParams} from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import 'highlight.js/styles/github.css'; // Import the highlight.js styles
+import hljs from 'highlight.js'; // Import highlight.js
 
 function UpdatePost() {
     const [file, setFile] = useState(null);
@@ -19,6 +21,32 @@ function UpdatePost() {
     const { postId } = useParams();
     const {currentUser} = useSelector((state) => state.user);
 
+    const modules = {
+        toolbar: [
+          [{ header: '1' }, { header: '2' }, { font: [] }],
+          [{ list: 'ordered' }, { list: 'bullet' }],
+          ['bold', 'italic', 'underline', 'blockquote'],
+          [{ align: [] }],
+          [{ 'code-block': true }], // Adding code block support
+          ['clean'], // Remove formatting button
+        ],
+        syntax: {
+          highlight: (text) => hljs.highlightAuto(text).value, // Enable syntax highlighting using highlight.js
+        },
+      };
+
+      const formats = [
+        'header',
+        'font',
+        'list',
+        'bullet',
+        'bold',
+        'italic',
+        'underline',
+        'blockquote',
+        'align',
+        'code-block', // Code block format
+      ];
     useEffect(() => {
         try {
             const fetchPost = async () => {
@@ -158,7 +186,8 @@ const handleSubmit = async(e) => {
 
             <ReactQuill  theme='snow' value={formData.content} placeholder='write something....' className='h-72 mb-12' required onChange={(value) => {
                 setFormData({...formData, content: value});
-            }}/>
+            }} modules={modules} // Pass the custom modules with toolbar
+            formats={formats} />
             <Button type='submit' gradientDuoTone='pinkToOrange'>Update Post</Button>
             {
                 publishError && (
