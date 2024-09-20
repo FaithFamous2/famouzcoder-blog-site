@@ -91,9 +91,17 @@ const handleSubmit = async(e) => {
                 <TextInput type='text' placeholder='Title' required id='title' className='flex-1' onChange={(e) => setFormData({...formData, title:e.target.value})}/>
                 <Select onChange={(e) => setFormData({...formData, category:e.target.value})}>
                     <option value="uncategorized">Selet a category</option>
-                    <option value="javascript"> JavaScript</option>
-                    <option value="reactjs"> React.Js</option>
-                    <option value="php">PHP</option>
+                    <option value='reactjs'>React.js</option>
+                    <option value='nextjs'>Next.js</option>
+                    <option value='javascript'>javascript</option>
+                    <option value='php'>PHP</option>
+                    <option value='python'>Python</option>
+                    <option value='nodejs'>Node.js</option>
+                    <option value='django'>Django</option>
+                    <option value='flask'>flask</option>
+                    <option value='ruby'>Ruby</option>
+                    <option value='rust'>Rust</option>
+                    <option value='r'>R</option>
                 </Select>
 
             </div>
