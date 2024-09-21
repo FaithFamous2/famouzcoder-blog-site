@@ -8,28 +8,89 @@ body{
 .ql-editor{
     font-size:1.05rem
 }
-.post-content p{
+/* General styles for the post content */
+/* General styling for post content */
+.post-content p {
     margin-bottom: 0.5rem;
 }
-.post-content h1{
+
+.post-content h1 {
     font-size: 1.5rem;
     font-weight: 600;
     font-family: sans-serif;
     margin: 1.5rem 0;
 }
-.post-content h2{
+
+.post-content h2 {
     font-size: 1.4rem;
     font-family: sans-serif;
     margin: 1.5rem 0;
 }
-.post-content a{
+
+.post-content a {
     color: rgb(73, 149, 199);
     text-decoration: none;
 }
-.post-content a:hover{
+
+.post-content a:hover {
     text-decoration: underline;
 }
 
-.dark .post-content a{
+.dark .post-content a {
     color: red;
+}
+
+/* Code block styling */
+.post-content pre,
+.post-content code {
+    background-color: #1e1e1e;
+    font-family: 'Fira Code', 'Courier New', monospace;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    overflow-x: auto;
+    transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+}
+
+/* Advanced scrollbar styling */
+.post-content pre::-webkit-scrollbar {
+    height: 10px;
+}
+
+.post-content pre::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 10px;
+}
+
+.post-content pre::-webkit-scrollbar-track {
+    background: #1e1e1e;
+}
+
+/* Syntax highlighting styles */
+.post-content pre .keyword { color: #f92672; }
+.post-content pre .string { color: #a6e22e; }
+.post-content pre .number { color: #ae81ff; }
+.post-content pre .comment { color: #75715e; font-style: italic; }
+.post-content pre .function { color: #66d9ef; }
+.post-content pre .variable { color: #5b3b6f; }
+
+/* Background gradient and hover effects */
+.post-content pre {
+    background: linear-gradient(135deg, #1e1e1e 25%, #2a2a2a 100%);
+}
+
+.post-content pre:hover {
+    background-color: #3c3c3c;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4);
+    overflow-x: scroll;
+    cursor: pointer;
+}
+
+/* Dark mode adjustments */
+.dark .post-content pre,
+.dark .post-content code {
+    background-color: #1e1e1e;
 }

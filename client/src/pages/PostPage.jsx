@@ -4,6 +4,16 @@ import { Link, useParams } from 'react-router-dom'
 import CallToAction from '../components/CallToAction';
 import CommentSection from '../components/CommentSection';
 import PostCard from '../components/PostCard';
+import Prism from 'prismjs';
+import 'prismjs/themes/prism-tomorrow.css'; // You can choose any theme you like
+import 'prismjs/components/prism-javascript'; // Add specific language if necessary
+import 'prismjs/components/prism-css'; // Add more languages based on the code you expect
+import 'prismjs/components/prism-markup'; // HTML, JSX
+import 'prismjs/components/prism-php'; // HTML, JSX
+import 'prismjs/components/prism-python'; // HTML, JSX
+import 'prismjs/components/prism-ruby'; // HTML, JSX
+import 'prismjs/components/prism-php-extras'; // HTML, JSX
+import 'prismjs/components/prism-perl'; // HTML, JSX
 
 function PostPage() {
     const {postSlug} = useParams();
@@ -11,6 +21,12 @@ function PostPage() {
     const [error, setError] = useState(false);
     const [post, setPost] = useState(null);
     const [recentPost, setRecentPost] = useState(null);
+
+    useEffect(() => {
+        if (post) {
+            Prism.highlightAll(); // Highlight the code after the post content is set
+        }
+    }, [post]);
 
     useEffect (() => {
         // console.log(postSlug);
@@ -39,6 +55,7 @@ function PostPage() {
         }
         fetchPost();
     }, [postSlug]);
+
 
     useEffect(() => {
         try {

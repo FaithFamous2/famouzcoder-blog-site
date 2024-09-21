@@ -83,6 +83,43 @@ const handleSubmit = async(e) => {
 };
 
 
+ // Toolbar options including code block
+ const modules = {
+    toolbar: [
+        [{ header: '1' }, { header: '2' }, { font: [] }],
+        [{ size: [] }],
+        ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+        [{ list: 'ordered' }, { list: 'bullet' }],
+        ['link', 'image', 'video'],
+        ['code-block'], // Added code block option
+        [{ align: [] }],
+        [{ color: [] }, { background: [] }],
+        ['clean'],
+    ],
+};
+
+// Specify the formats that are supported by Quill
+const formats = [
+    'header',
+    'font',
+    'size',
+    'bold',
+    'italic',
+    'underline',
+    'strike',
+    'blockquote',
+    'list',
+    'bullet',
+    'link',
+    'image',
+    'video',
+    'code-block', // Added code-block format
+    'align',
+    'color',
+    'background',
+];
+
+
   return (
     <div className='p-3 max-w-3xl mx-auto min-h-screen'>
         <h1 className='text-center text-3xl my-7 font-semibold'> Create a post</h1>
@@ -134,7 +171,8 @@ const handleSubmit = async(e) => {
                         <img src={formData.image} alt='upload' className='w-full h-72 object-cover border border-teal-400' />
                     )}
 
-            <ReactQuill theme='snow' placeholder='write something....' className='h-72 mb-12' required onChange={(value) => {
+            <ReactQuill theme='snow' modules={modules}
+                    formats={formats} placeholder='write something....' className='h-72 mb-12' required onChange={(value) => {
                 setFormData({...formData, content: value});
             }}/>
             <Button type='submit' gradientDuoTone='pinkToOrange'>Publish</Button>
