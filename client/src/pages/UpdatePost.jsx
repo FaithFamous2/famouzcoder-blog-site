@@ -16,7 +16,7 @@ function UpdatePost() {
     const [ imageUploadProgress, setImageUploadProgress] = useState(null);
     const [publishError, setPublishError] = useState(null);
     const[ImageUploadError, setImageUploadError] = useState(null);
-    const [formData, setFormData] = useState({});
+    const [formData, setFormData] = useState({content: ''});
     const navigate = useNavigate();
     const { postId } = useParams();
     const {currentUser} = useSelector((state) => state.user);
