@@ -7,42 +7,14 @@ import { app } from '../firebase';
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import { useNavigate } from 'react-router-dom';
-import 'highlight.js/styles/github.css'; // Import the highlight.js styles
-import hljs from 'highlight.js'; // Import highlight.js
-
-hljs.configure({
-    languages: ['javascript', 'html', 'css', 'python'], // Add languages as needed
-  });
 
 function CreatePost() {
     const [file, setFile] = useState(null);
     const [ imageUploadProgress, setImageUploadProgress] = useState(null);
     const [publishError, setPublishError] = useState(null);
     const[ImageUploadError, setImageUploadError] = useState(null);
-    const [formData, setFormData] = useState({content: ''});
+    const [formData, setFormData] = useState({});
     const navigate = useNavigate()
-
-    const modules = {
-        syntax: {
-          highlight: (text) => hljs.highlightAuto(text).value,  // Syntax highlighting
-        },
-        toolbar: [
-          [{ header: '1' }, { header: '2' }, { font: [] }],
-          [{ list: 'ordered' }, { list: 'bullet' }],
-          ['bold', 'italic', 'underline', 'strike'],
-          [{ script: 'sub' }, { script: 'super' }],
-          ['code-block'],  // Add the code block option
-          ['link', 'image'],
-          [{ align: [] }],
-          [{ color: [] }, { background: [] }],
-        ],
-      };
-
-      const formats = [
-        'header', 'font', 'list', 'bullet', 'bold', 'italic', 'underline', 'strike',
-        'code-block', 'link', 'image', 'align', 'color', 'background',
-      ];
-
     // console.log(formData)
     const handleUploadImage = async () => {
         try {
@@ -162,9 +134,9 @@ const handleSubmit = async(e) => {
                         <img src={formData.image} alt='upload' className='w-full h-72 object-cover border border-teal-400' />
                     )}
 
-                <ReactQuill theme='snow' modules={modules} formats={formats} placeholder='write something....' className='h-72 mb-12' required onChange={(value) => {
-                    setFormData({...formData, content: value});
-                }} />
+            <ReactQuill theme='snow' placeholder='write something....' className='h-72 mb-12' required onChange={(value) => {
+                setFormData({...formData, content: value});
+            }}/>
             <Button type='submit' gradientDuoTone='pinkToOrange'>Publish</Button>
             {
                 publishError && (
